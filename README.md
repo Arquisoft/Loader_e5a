@@ -10,12 +10,21 @@ Skeleton of Citizens Loader module
 # Authors
 
 Daniel Alba Muñiz (UO245188)
+
 José Luis Bugallo González (UO244702)
+
 Ignacio Escribano Burgos (UO227766)
+
 Daniel Duque Barrientos (UO245553)
+
 Rubén de la Varga Cabero (UO246977)
 
 # New Authors
 
 Alejandro Barrera Sánchez (UO251893)
+
 Tania Álvarez Díaz (UO244856)
+
+Daniel Bermejo Blanco (UO204115) -> (@UO204115)
+
+Ismael Cadenas
