@@ -14,3 +14,8 @@ José Luis Bugallo González (UO244702)
 Ignacio Escribano Burgos (UO227766)
 Daniel Duque Barrientos (UO245553)
 Rubén de la Varga Cabero (UO246977)
+
+# New Authors
+
+Alejandro Barrera Sánchez (UO251893)
+
