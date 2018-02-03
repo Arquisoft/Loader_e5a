@@ -25,6 +25,6 @@ Alejandro Barrera Sánchez (UO251893)
 
 Tania Álvarez Díaz (UO244856)
 
-Daniel Bermejo Blanco (UO204115) -> ( @UO204115 )
+Daniel Bermejo Blanco (UO204115)
 
-Ismael Cadenas
+Ismael Cadenas (UO251025)
