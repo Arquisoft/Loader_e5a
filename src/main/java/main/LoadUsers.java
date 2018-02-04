@@ -34,10 +34,10 @@ public class LoadUsers {
 	}
 
 	private void showInfo() {
-		System.out.println("Proyecto Citizens Loader 1A");
+		System.out.println("Proyecto Loader 5A");
 		System.out.println("El objetivo de este proyecto es actuar como modulo de carga de"
 				+ "usuarios para un sistema de participacion ciudadana");
-		System.out.println("Realizado por el grupo 1A1 compuesto por: ");
+		System.out.println("Realizado en el año 2017 por el grupo 1A1 compuesto por: ");
 		System.out.println("Daniel Alba Muñiz (UO245288)");
 		System.out.println("Jose Luis Bugallo Gonzalez (Uo244702)");
 		System.out.println("Ignacio Escribano Burgos (UO227766)");
@@ -45,7 +45,13 @@ public class LoadUsers {
 		System.out.println("Ruben de la Varga Cabero (UO246977)");
 		System.out.println("Para mas informacion consultar el repositorio en github con la url "
 				+ "https://github.com/Arquisoft/citizensLoader1a.git");
-
+		System.out.println("Ampliado en el año 2018 por el grupo 5A1 compuesto por: ");
+		System.out.println("Alejandro Barrera Sánchez (UO251893)");
+		System.out.println("Tania Álvarez Díaz (UO244856)");
+		System.out.println("Daniel Bermejo Blanco (UO204115)");
+		System.out.println("Ismael Cadenas Alonso (UO251025)");
+		System.out.println("Para mas informacion consultar el repositorio en github con la url "
+				+ "https://github.com/Arquisoft/Loader_e5a.git");
 	}
 
 	private void showHelp() {
