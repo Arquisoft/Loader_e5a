@@ -122,7 +122,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id =" + id + ", nombre=" + nombre + ", localizacion=" + localizacion + ", email=" + email
+		return "User [id =" + id + ", nombre=" + nombre + ", localizacion=" + localizacion.toString() + ", email=" + email
 				+ ", identificador=" + identificador + ", tipo=" + tipo + "]";
 	}
 
@@ -152,7 +152,7 @@ public class User implements Serializable {
 	 */
 	private Location obtenerLocalizacion(String loc)
 	{
-		if(loc == ""){
+		if(loc.equals("")){
 			Location l = new Location(0, 0);
 			l.setExist(false);
 			return l;

@@ -54,6 +54,7 @@ public class Location {
 	}
 
 	/**
+	 * Constructor
 	 * @param latitude
 	 * @param longitud
 	 */
@@ -62,4 +63,12 @@ public class Location {
 		setLongitud(longitud);
 		setExist(true); //Por defecto si existe, si no tiene tendremos que cambiarle el valor
 	}
+
+	@Override
+	public String toString() {
+		if (!isExist())
+			return " ";
+		return latitude + " ; " + longitud;
+	}
+
 }
