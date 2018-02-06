@@ -9,6 +9,7 @@ public class Location {
 	
 	private double latitude; //0° y 90 °: Hemisferio Norte; 0° y -90°: Hemisferio Sur
 	private double longitud; //0° y 180°: Al este del meridiano de Greenwich; 0° y -180°: Al oeste del meridiano de Greenwich
+	private boolean exist;
 	
 	/**
 	 * @return the latitude
@@ -39,11 +40,26 @@ public class Location {
 	}
 
 	/**
+	 * @return the exist
+	 */
+	public boolean isExist() {
+		return exist;
+	}
+
+	/**
+	 * @param exist the exist to set
+	 */
+	public void setExist(boolean exist) {
+		this.exist = exist;
+	}
+
+	/**
 	 * @param latitude
 	 * @param longitud
 	 */
 	public Location(double latitude, double longitud) {
 		setLatitude(latitude);
 		setLongitud(longitud);
+		setExist(true); //Por defecto si existe, si no tiene tendremos que cambiarle el valor
 	}
 }

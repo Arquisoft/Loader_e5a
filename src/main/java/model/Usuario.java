@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
 	private String nombre;
-	private int[] localizacion; //igual es buena idea crear una clase
+	private Location localizacion;
 	private String email;
 	private String identificador; //Es unico y es el nombre de usuario
 	private String password;
@@ -39,9 +38,9 @@ public class Usuario implements Serializable {
 	 * @param identificador
 	 * @param tipo
 	 */
-	public Usuario(String nombre, int[] localizacion, String email, String identificador, int tipo) {
+	public Usuario(String nombre, String localizacion, String email, String identificador, int tipo) {
 		setNombre(nombre);
-		setLocalizacion(localizacion);
+		setLocalizacion(obtenerLocalizacion(localizacion));
 		setEmail(email);
 		setIdentificador(identificador);
 		setTipo(tipo);
@@ -56,11 +55,11 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int[] getLocalizacion() {
+	public Location getLocalizacion() {
 		return localizacion;
 	}
 
-	private void setLocalizacion(int[] localizacion) {
+	private void setLocalizacion(Location localizacion) {
 		this.localizacion = localizacion;
 	}
 
@@ -127,6 +126,9 @@ public class Usuario implements Serializable {
 				+ ", identificador=" + identificador + ", tipo=" + tipo + "]";
 	}
 
+	/**
+	 * Método para generar una contraseña aleatoria
+	 */
 	private void generarPassword() {
 		StringBuffer pass = new StringBuffer();
 		int low = 65;
@@ -140,6 +142,25 @@ public class Usuario implements Serializable {
 			pass.append(numAleatorio);
 		}
 		setPassword(pass.toString());
+	}
+	
+	/**
+	 * Método para obtener la localizacion del usuario a partir
+	 * del string que se pasa por parámetro
+	 * @param loc
+	 * @return localizacion del usuario
+	 */
+	private Location obtenerLocalizacion(String loc)
+	{
+		if(loc == ""){
+			Location l = new Location(0, 0);
+			l.setExist(false);
+			return l;
+		}
+		String[] trozos = loc.split("&");	
+		double latitud = Double.parseDouble(trozos[0]);
+		double longitud = Double.parseDouble(trozos[1]);
+		return new Location(latitud, longitud);
 	}
 }
 

@@ -22,6 +22,7 @@ import com.lowagie.text.DocumentException;
 
 import executer.*;
 import model.User;
+import model.Usuario;
 
 
 public class RList implements ReadList {
@@ -106,6 +107,7 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
+	/**Método del año 2016/2017.
 	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
 		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
@@ -114,6 +116,14 @@ public class RList implements ReadList {
 		InsertR insert = new InsertR();
 		insert.save(user);
 		//getaF().saveData(user);
+	}
+	**/
+	
+	//Sustituye al metodo comentador
+	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
+		Usuario user = new Usuario(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), list.get(2).getStringCellValue(), list.get(3).getStringCellValue(), (int)list.get(4).getNumericCellValue());
+		//InsertR insert = new InsertR();
+		//insert.save(user);
 	}
 	
 	public ArrayList<List<XSSFCell>> getAllUsers(){
