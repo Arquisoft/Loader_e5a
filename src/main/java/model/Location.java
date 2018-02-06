@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Clase que guarda la localizacion de los usuarios
  * @author Tania Alvarez Diaz
