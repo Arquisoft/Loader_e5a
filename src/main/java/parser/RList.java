@@ -22,7 +22,7 @@ import com.lowagie.text.DocumentException;
 
 import executer.*;
 import model.User;
-import model.Usuario;
+import model.User;
 
 
 public class RList implements ReadList {
@@ -121,9 +121,9 @@ public class RList implements ReadList {
 	
 	//Sustituye al metodo comentador
 	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
-		Usuario user = new Usuario(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), list.get(2).getStringCellValue(), list.get(3).getStringCellValue(), (int)list.get(4).getNumericCellValue());
-		//InsertR insert = new InsertR();
-		//insert.save(user);
+		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(), list.get(2).getStringCellValue(), list.get(3).getStringCellValue(), (int)list.get(4).getNumericCellValue());
+		InsertR insert = new InsertR();
+		insert.save(user);
 	}
 	
 	public ArrayList<List<XSSFCell>> getAllUsers(){
