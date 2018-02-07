@@ -15,46 +15,40 @@ public class Location {
     private double longitud; // 0° a 180°: Al este del meridiano de Greenwich; 0° a -180°: Al oeste del
 			     // meridiano de Greenwich
     private boolean exist;
-    
+
     public Location() {
-    	
+
     }
-    
-    
 
     @Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(longitud);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	long temp;
+	temp = Double.doubleToLongBits(latitude);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	temp = Double.doubleToLongBits(longitud);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	return result;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Location other = (Location) obj;
+	if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+	    return false;
+	if (Double.doubleToLongBits(longitud) != Double.doubleToLongBits(other.longitud))
+	    return false;
+	return true;
+    }
 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Location other = (Location) obj;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
-			return false;
-		if (Double.doubleToLongBits(longitud) != Double.doubleToLongBits(other.longitud))
-			return false;
-		return true;
-	}
-
-
-
-	/**
+    /**
      * @return the latitude
      */
     public double getLatitude() {

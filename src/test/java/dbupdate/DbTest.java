@@ -21,56 +21,56 @@ import persistence.util.Jpa;
 
 public class DbTest {
 
-	@Test
-	public void usuarioYaExistenteIdentificador() throws FileNotFoundException, DocumentException, IOException {
-		ActionSingleton aS = ActionSingleton.getInstance();
-		User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "ST1", 1);
-		User user2 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "ST1", 1);
+    @Test
+    public void usuarioYaExistenteIdentificador() throws FileNotFoundException, DocumentException, IOException {
+	ActionSingleton aS = ActionSingleton.getInstance();
+	User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "ST1", "Person");
+	User user2 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "ST1", "Person");
 
-		aS.getAF().saveData(user1);
-		aS.getAF().saveData(user2);
+	aS.getAF().saveData(user1);
+	aS.getAF().saveData(user2);
 
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
 
-		List<User> test = UserFinder.findByIdentificador("ST1");
-		assertEquals(test.get(0).getEmail(), "ferpm@gmail.com");
+	List<User> test = UserFinder.findByIdentificador("ST1");
+	assertEquals(test.get(0).getEmail(), "ferpm@gmail.com");
 
-		trx.commit();
-		mapper.close();
-	}
+	trx.commit();
+	mapper.close();
+    }
 
-	@Test
-	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
-		ActionSingleton aS = ActionSingleton.getInstance();
-		User user1 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
-		User user3 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
+    @Test
+    public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
+	ActionSingleton aS = ActionSingleton.getInstance();
+	User user1 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", "Sensor");
+	User user3 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", "Sensor");
 
-		aS.getAF().saveData(user1);
-		aS.getAF().saveData(user3);
+	aS.getAF().saveData(user1);
+	aS.getAF().saveData(user3);
 
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
 
-		List<User> test = UserFinder.findByEmail("francisco@gmail.com");
-		assertEquals(test.get(0).getIdentificador(), "ST1");
+	List<User> test = UserFinder.findByEmail("francisco@gmail.com");
+	assertEquals(test.get(0).getIdentificador(), "ST1");
 
-		trx.commit();
-		mapper.close();
+	trx.commit();
+	mapper.close();
 
-	}
+    }
 
-	@After
-	public void deleting() {
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
-		List<User> aBorrar = UserFinder.findByIdentificador("ST1");
-		Jpa.getManager().remove(aBorrar.get(0));
-		trx.commit();
-		mapper.close();
-	}
+    @After
+    public void deleting() {
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
+	List<User> aBorrar = UserFinder.findByIdentificador("ST1");
+	Jpa.getManager().remove(aBorrar.get(0));
+	trx.commit();
+	mapper.close();
+    }
 
 }

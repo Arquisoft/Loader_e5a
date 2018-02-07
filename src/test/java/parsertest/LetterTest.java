@@ -15,29 +15,29 @@ import parser.cartas.*;
 
 public class LetterTest {
 
-	@Test
-	public void creadasCorrectamente() throws FileNotFoundException, DocumentException, IOException {
-		Letter letter = new PdfLetter();
-		User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", 1);
-		letter.createLetter(user1);
+    @Test
+    public void creadasCorrectamente() throws FileNotFoundException, DocumentException, IOException {
+	Letter letter = new PdfLetter();
+	User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", "Person");
+	letter.createLetter(user1);
 
-		File file = new File("cartas/pdf/87654321P.pdf");
-		assertTrue(file.exists());
-		file.delete();
+	File file = new File("cartas/pdf/87654321P.pdf");
+	assertTrue(file.exists());
+	file.delete();
 
-		letter = new WordLetter();
-		letter.createLetter(user1);
+	letter = new WordLetter();
+	letter.createLetter(user1);
 
-		file = new File("cartas/word/87654321P.docx");
-		assertTrue(file.exists());
-		file.delete();
+	file = new File("cartas/word/87654321P.docx");
+	assertTrue(file.exists());
+	file.delete();
 
-		letter = new TxtLetter();
-		letter.createLetter(user1);
+	letter = new TxtLetter();
+	letter.createLetter(user1);
 
-		file = new File("cartas/txt/87654321P.txt");
-		assertTrue(file.exists());
-		file.delete();
-	}
-	
+	file = new File("cartas/txt/87654321P.txt");
+	assertTrue(file.exists());
+	file.delete();
+    }
+
 }
