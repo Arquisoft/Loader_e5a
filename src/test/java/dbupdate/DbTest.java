@@ -22,58 +22,58 @@ import persistence.util.Jpa;
 
 public class DbTest {
 
-    @Test
-    public void usuarioYaExistenteDni() throws FileNotFoundException, DocumentException, IOException {
-	ActionSingleton aS = ActionSingleton.getInstance();
-	Date date = new Date(System.currentTimeMillis());
-	User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-	User user2 = new User("Paco", "Francisco", "franci@gmail.com", date, "C\\Uría", "Español", "87654321P");
+	@Test
+	public void usuarioYaExistenteDni() throws FileNotFoundException, DocumentException, IOException {
+		ActionSingleton aS = ActionSingleton.getInstance();
+		Date date = new Date(System.currentTimeMillis());
+		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		User user2 = new User("Paco", "Francisco", "franci@gmail.com", date, "C\\Uría", "Español", "87654321P");
 
-	aS.getAF().saveData(user1);
-	aS.getAF().saveData(user2);
+		aS.getAF().saveData(user1);
+		aS.getAF().saveData(user2);
 
-	EntityManager mapper = Jpa.createEntityManager();
-	EntityTransaction trx = mapper.getTransaction();
-	trx.begin();
+		EntityManager mapper = Jpa.createEntityManager();
+		EntityTransaction trx = mapper.getTransaction();
+		trx.begin();
 
-	List<User> test = UserFinder.findByDNI("87654321P");
-	assertEquals(test.get(0).getEmail(), "francisco@gmail.com");
+		List<User> test = UserFinder.findByDNI("87654321P");
+		assertEquals(test.get(0).getEmail(), "francisco@gmail.com");
 
-	trx.commit();
-	mapper.close();
-    }
+		trx.commit();
+		mapper.close();
+	}
 
-    @Test
-    public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
-	ActionSingleton aS = ActionSingleton.getInstance();
-	Date date = new Date(System.currentTimeMillis());
-	User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-	User user3 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654353Y");
+	@Test
+	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
+		ActionSingleton aS = ActionSingleton.getInstance();
+		Date date = new Date(System.currentTimeMillis());
+		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		User user3 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654353Y");
 
-	aS.getAF().saveData(user1);
-	aS.getAF().saveData(user3);
+		aS.getAF().saveData(user1);
+		aS.getAF().saveData(user3);
 
-	EntityManager mapper = Jpa.createEntityManager();
-	EntityTransaction trx = mapper.getTransaction();
-	trx.begin();
+		EntityManager mapper = Jpa.createEntityManager();
+		EntityTransaction trx = mapper.getTransaction();
+		trx.begin();
 
-	List<User> test = UserFinder.findByEmail("francisco@gmail.com");
-	assertEquals(test.get(0).getDNI(), "87654321P");
+		List<User> test = UserFinder.findByEmail("francisco@gmail.com");
+		assertEquals(test.get(0).getDNI(), "87654321P");
 
-	trx.commit();
-	mapper.close();
+		trx.commit();
+		mapper.close();
 
-    }
+	}
 
-    @After
-    public void deleting() {
-	EntityManager mapper = Jpa.createEntityManager();
-	EntityTransaction trx = mapper.getTransaction();
-	trx.begin();
-	List<User> aBorrar = UserFinder.findByDNI("87654321P");
-	Jpa.getManager().remove(aBorrar.get(0));
-	trx.commit();
-	mapper.close();
-    }
+	@After
+	public void deleting() {
+		EntityManager mapper = Jpa.createEntityManager();
+		EntityTransaction trx = mapper.getTransaction();
+		trx.begin();
+		List<User> aBorrar = UserFinder.findByDNI("87654321P");
+		Jpa.getManager().remove(aBorrar.get(0));
+		trx.commit();
+		mapper.close();
+	}
 
 }

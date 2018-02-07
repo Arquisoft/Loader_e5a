@@ -10,14 +10,14 @@ import model.User;
 
 /**
  * 
- * @author Ignacio Escribano Burgos 
+ * @author Ignacio Escribano Burgos
  * Gestiona la conexión con la base de datos
  *
  */
 public interface Insert {
-    User save(User user) throws FileNotFoundException, DocumentException, IOException;
+	User save(User user) throws FileNotFoundException, DocumentException, IOException;
 
-    List<User> findByDNI(String dni);
+	List<User> findByDNI(String dni);
 
-    List<User> findByEmail(String email);
+	List<User> findByEmail(String email);
 }

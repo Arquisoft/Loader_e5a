@@ -8,5 +8,5 @@ import com.lowagie.text.DocumentException;
 import model.User;
 
 public abstract class Letter {
-    public abstract void createLetter(User user) throws DocumentException, FileNotFoundException, IOException;
+		public abstract void createLetter(User user) throws DocumentException, FileNotFoundException, IOException;
 }
