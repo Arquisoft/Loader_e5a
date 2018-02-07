@@ -9,16 +9,16 @@ import com.lowagie.text.DocumentException;
 import model.User;
 
 /**
- * Gestiona la conexión con la base de datos.
- * Modificada por Tania.
+ * Gestiona la conexión con la base de datos. Modificada por Tania.
+ * 
  * @author Ignacio Escribano Burgos
  * @author Tania Alvarez Diaz
  *
  */
 public interface Insert {
-	User save(User user) throws FileNotFoundException, DocumentException, IOException;
+    User save(User user) throws FileNotFoundException, DocumentException, IOException;
 
-	List<User> findByIdentificador(String identificador);
+    List<User> findByIdentificador(String identificador);
 
-	List<User> findByEmail(String email);
+    List<User> findByEmail(String email);
 }

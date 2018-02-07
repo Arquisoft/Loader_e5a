@@ -21,56 +21,57 @@ import persistence.util.Jpa;
 
 public class DbTest {
 
-	@Test
-	public void usuarioYaExistenteIdentificador() throws FileNotFoundException, DocumentException, IOException {
-		ActionSingleton aS = ActionSingleton.getInstance();
-		User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", 1);
-		User user2 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", 1);
-		
-		aS.getAF().saveData(user1);
-		aS.getAF().saveData(user2);
+    @Test
+    public void usuarioYaExistenteIdentificador() throws FileNotFoundException, DocumentException, IOException {
+	ActionSingleton aS = ActionSingleton.getInstance();
+	User user1 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", 1);
+	User user2 = new User("Fernando Perez Menendez", "", "ferpm@gmail.com", "87654321P", 1);
 
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
+	aS.getAF().saveData(user1);
+	aS.getAF().saveData(user2);
 
-		List<User> test = UserFinder.findByIdentificador("87654321P");
-		assertEquals(test.get(0).getEmail(), "ferpm@gmail.com");
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
 
-		trx.commit();
-		mapper.close();
-	}
+	List<User> test = UserFinder.findByIdentificador("87654321P");
+	assertEquals(test.get(0).getEmail(), "ferpm@gmail.com");
 
-	@Test
-	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
-		ActionSingleton aS = ActionSingleton.getInstance();
-		User user1 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
-		User user3 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
-		
-		aS.getAF().saveData(user1);
-		aS.getAF().saveData(user3);
+	trx.commit();
+	mapper.close();
+    }
 
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
+    // Creo que este test sobra
+    @Test
+    public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
+	ActionSingleton aS = ActionSingleton.getInstance();
+	User user1 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
+	User user3 = new User("Sensor temperatura S1", "43.36&-5.85", "francisco@gmail.com", "ST1", 3);
 
-		List<User> test = UserFinder.findByEmail("francisco@gmail.com");
-		assertEquals(test.get(0).getIdentificador(), "ST1");
+	aS.getAF().saveData(user1);
+	aS.getAF().saveData(user3);
 
-		trx.commit();
-		mapper.close();
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
 
-	}
+	List<User> test = UserFinder.findByEmail("francisco@gmail.com");
+	assertEquals(test.get(0).getIdentificador(), "ST1");
 
-	@After
-	public void deleting() {
-		EntityManager mapper = Jpa.createEntityManager();
-		EntityTransaction trx = mapper.getTransaction();
-		trx.begin();
-		List<User> aBorrar = UserFinder.findByIdentificador("ST1");
-		Jpa.getManager().remove(aBorrar.get(0));
-		trx.commit();
-		mapper.close();
-	}
+	trx.commit();
+	mapper.close();
+
+    }
+
+    @After
+    public void deleting() {
+	EntityManager mapper = Jpa.createEntityManager();
+	EntityTransaction trx = mapper.getTransaction();
+	trx.begin();
+	List<User> aBorrar = UserFinder.findByIdentificador("ST1");
+	Jpa.getManager().remove(aBorrar.get(0));
+	trx.commit();
+	mapper.close();
+    }
 
 }
