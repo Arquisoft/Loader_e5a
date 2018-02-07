@@ -52,3 +52,9 @@ local.properties
 .recommenders/
 
 .DS_Store
+
+*.pdf
+
+*.txt
+
+*.docx
