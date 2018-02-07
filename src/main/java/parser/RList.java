@@ -11,7 +11,6 @@ import java.util.logging.Level;
 
 import reportwriter.ReportWriter;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -23,27 +22,27 @@ import com.lowagie.text.DocumentException;
 import executer.*;
 import model.User;
 
-
 public class RList implements ReadList {
 	private ActionFacade aF = new ActionFacadeClass();
 	private ArrayList<List<XSSFCell>> allUsers;
 
 	/**
-	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
-	 * esta en formato excel, detiene la lectura y escribe en el log la causa
-	 * del error. Va leyendo linea por linea(hay un usuario en cada linea): Para
-	 * cada linea crea un objeto User y se lo pasa al metodo cargarDatos del
-	 * AtionFacade. Si existe algun fallo de FORMATO se ignora esa linea y se
-	 * pasa a la siguiente, ademas de escribir dicho error en el log.
+	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no esta en
+	 * formato excel, detiene la lectura y escribe en el log la causa del error. Va
+	 * leyendo linea por linea(hay un usuario en cada linea): Para cada linea crea
+	 * un objeto User y se lo pasa al metodo cargarDatos del AtionFacade. Si existe
+	 * algun fallo de FORMATO se ignora esa linea y se pasa a la siguiente, ademas
+	 * de escribir dicho error en el log.
 	 * 
 	 * @param path
 	 *            ruta del fichero
 	 * 
-	 *  @exception FileNotFoundException No se encuentra el fichero excel
-	 * @throws DocumentException 
+	 * @exception FileNotFoundException
+	 *                No se encuentra el fichero excel
+	 * @throws DocumentException
 	 */
 	@Override
-	public void load(String path) throws FileNotFoundException, DocumentException{
+	public void load(String path) throws FileNotFoundException, DocumentException {
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -60,10 +59,9 @@ public class RList implements ReadList {
 			while (rows.hasNext()) {
 				user = new ArrayList<XSSFCell>();
 				row = (XSSFRow) rows.next();
-				Iterator<Cell> cells = row.cellIterator();
-				if (i > 0) {
-					while (cells.hasNext()) {
-						cell = (XSSFCell) cells.next();
+				if (i > 0 && row.getCell(0) != null) {
+					for(int k = 0 ; k<5 ; k++) {
+						cell = (XSSFCell) row.getCell(k,Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
 						user.add(cell);
 						System.out.print(cell.toString() + " ; ");
 					}
@@ -73,21 +71,21 @@ public class RList implements ReadList {
 				}
 				i++;
 			}
-		} catch(FileNotFoundException ex){
+		} catch (FileNotFoundException ex) {
 			throw ex;
-		}
-		catch (IOException ioe) {
+		} catch (IOException ioe) {
 			System.err.println("Problema con la lectura del excel en la linea " + i);
-			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Problema con la lectura del excel en la linea " + i);
-		}finally {
-			if (excelFile != null){
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
+					"Problema con la lectura del excel en la linea " + i);
+		} finally {
+			if (excelFile != null) {
 				try {
 					excelFile.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
-			
+
 			if (excel != null) {
 				try {
 					excel.close();
@@ -106,17 +104,26 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
+	/**
+	 * Método del año 2016/2017. private void crearUsuarios(List<XSSFCell> list)
+	 * throws FileNotFoundException, DocumentException, IOException { User user =
+	 * new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+	 * list.get(2).getStringCellValue(), list.get(3).getDateCellValue(),
+	 * list.get(4).getStringCellValue(),list.get(5).getStringCellValue(),
+	 * list.get(6).getStringCellValue()); InsertR insert = new InsertR();
+	 * insert.save(user); //getaF().saveData(user); }
+	 **/
+
+	// Sustituye al metodo comentador
 	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
 		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
-				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
-				list.get(6).getStringCellValue());
+				list.get(2).getStringCellValue(), list.get(3).getStringCellValue(),
+				(int) list.get(4).getNumericCellValue());
 		InsertR insert = new InsertR();
 		insert.save(user);
-		//getaF().saveData(user);
 	}
-	
-	public ArrayList<List<XSSFCell>> getAllUsers(){
+
+	public ArrayList<List<XSSFCell>> getAllUsers() {
 		return allUsers;
 	}
 
