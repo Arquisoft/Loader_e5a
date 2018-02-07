@@ -2,7 +2,7 @@ package reportwriter;
 
 public class ReportWriter {
     private static ReportWriter instance;
-    private WriteReport wR = new WriteReportImpl();
+    private WriteReport wR = new WreportP();
 
     private ReportWriter() {
     }

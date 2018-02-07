@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import java.util.logging.Logger;
 import org.junit.Test;
 
-import reportwriter.WriteReportImpl;
+import reportwriter.WreportP;
 
 public class WriteReportImplTest {
 
 	@Test
 	public void test() {
-		WriteReportImpl wr = new WriteReportImpl();
+		WreportP wr = new WreportP();
 		wr.log(Level.WARNING, "prueba");
 		wr.getLogger();
 		assertEquals(Logger.getLogger("Logger"), Logger.getLogger("Logger"));
