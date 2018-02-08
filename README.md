@@ -28,3 +28,23 @@ Tania Álvarez Díaz (UO244856)
 Daniel Bermejo Blanco (UO204115)
 
 Ismael Cadenas Alonso (UO251025)
+
+# Compilar
+
+Ejecutar maven en la carpeta del proyecto, con la opción compile.
+Si está en el entorno de windows:
+  - mvn compile
+Si no:
+  - /"rutamavem"/mvn.cmd compile
+  
+# Probar
+Si está en el entorno de windows:
+  - mvn test
+Si no:
+  - "rutamavem"/bin/mvn.cmd test
+  
+#Ejecutar
+
+- java -jar "jar-generado" "ruta del excel de carga"
+  
+  
