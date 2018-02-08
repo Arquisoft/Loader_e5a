@@ -32,15 +32,23 @@ Ismael Cadenas Alonso (UO251025)
 # Compilar
 
 Ejecutar maven en la carpeta del proyecto, con la opción compile.
+
 Si está en el entorno de windows:
+
   - mvn compile
+  
 Si no:
+
   - /"rutamavem"/mvn.cmd compile
   
 # Probar
+
 Si está en el entorno de windows:
+
   - mvn test
+  
 Si no:
+
   - "rutamavem"/bin/mvn.cmd test
   
 #Ejecutar
