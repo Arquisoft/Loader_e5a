@@ -51,7 +51,7 @@ Si no:
 
   - "rutamavem"/bin/mvn.cmd test
   
-#Ejecutar
+# Ejecutar
 
 - java -jar "jar-generado" "ruta del excel de carga"
   
