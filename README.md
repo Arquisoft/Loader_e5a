@@ -7,6 +7,16 @@
 
 Loader module
 
+# New Authors
+
+Alejandro Barrera Sánchez (UO251893)
+
+Tania Álvarez Díaz (UO244856)
+
+Daniel Bermejo Blanco (UO204115)
+
+Ismael Cadenas Alonso (UO251025)
+
 # Authors
 
 Daniel Alba Muñiz (UO245188)
@@ -19,31 +29,25 @@ Daniel Duque Barrientos (UO245553)
 
 Rubén de la Varga Cabero (UO246977)
 
-# New Authors
 
-Alejandro Barrera Sánchez (UO251893)
-
-Tania Álvarez Díaz (UO244856)
-
-Daniel Bermejo Blanco (UO204115)
-
-Ismael Cadenas Alonso (UO251025)
 
 # Compilar
 
 Ejecutar maven en la carpeta del proyecto, con la opción compile.
 
-Si está en el entorno de windows:
+Si está en las variables de entorno de windows:
 
   - mvn compile
+   - mvn package
   
 Si no:
 
-  - /"rutamavem"/mvn.cmd compile
+  - /"rutamavem"/bin/mvn.cmd compile
+  - /"rutamaven"/bin/mvn.cmd package
   
 # Probar
 
-Si está en el entorno de windows:
+Si está en las variables de entorno de windows:
 
   - mvn test
   
@@ -54,5 +58,3 @@ Si no:
 # Ejecutar
 
 - java -jar "jar-generado" "ruta del excel de carga"
-  
-  
