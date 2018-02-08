@@ -57,4 +57,6 @@ Si no:
   
 # Ejecutar
 
+Mejor incluir ruta completa hasta los archivos
+
 - java -jar "jar-generado" "ruta del excel de carga"
