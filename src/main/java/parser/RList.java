@@ -78,8 +78,10 @@ public class RList implements ReadList {
 			throw new IOException("El valor tipo debe estar registrado.");
 
 		    System.out.println();
-		    allUsers.add(user);
-		    crearUsuarios(user);
+		    if(comprobarLocalizacion(user.get(1).getStringCellValue(), (int) user.get(4).getNumericCellValue())){
+		    	allUsers.add(user);
+			    crearUsuarios(user);
+		    }
 		}
 		i++;
 	    }
@@ -154,15 +156,12 @@ public class RList implements ReadList {
 
     // Sustituye al metodo comentador
     private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
-    	if(comprobarLocalizacion(list.get(1).getStringCellValue(), (int) list.get(4).getNumericCellValue())){
-    		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-        			list.get(2).getStringCellValue(), list.get(3).getStringCellValue(),
-        			agents.get((int) list.get(4).getNumericCellValue()));
-        	InsertR insert = new InsertR();
-        	insert.save(user);
-    	}else{
-    		
-    	}
+    	User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+       			list.get(2).getStringCellValue(), list.get(3).getStringCellValue(),
+       			agents.get((int) list.get(4).getNumericCellValue()));
+       	InsertR insert = new InsertR();
+       	insert.save(user);
+    	
     }
 
     /**
