@@ -154,15 +154,50 @@ public class RList implements ReadList {
 
     // Sustituye al metodo comentador
     private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
-	User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
-		list.get(2).getStringCellValue(), list.get(3).getStringCellValue(),
-		agents.get((int) list.get(4).getNumericCellValue()));
-	InsertR insert = new InsertR();
-	insert.save(user);
+    	if(comprobarLocalizacion(list.get(1).getStringCellValue(), (int) list.get(4).getNumericCellValue())){
+    		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+        			list.get(2).getStringCellValue(), list.get(3).getStringCellValue(),
+        			agents.get((int) list.get(4).getNumericCellValue()));
+        	InsertR insert = new InsertR();
+        	insert.save(user);
+    	}else{
+    		
+    	}
     }
 
-    public ArrayList<List<XSSFCell>> getAllUsers() {
-	return allUsers;
+    /**
+     * Metodo que comprueba cuando recibe un sensor si este tiene localización
+     * @param localizacion del usuario
+     * @param tipo del usuario
+     * @return true si se puede crear el usuario, false si no
+     */
+    private boolean comprobarLocalizacion(String localizacion, int tipo) {
+    	//Miro que sea un sensor
+    	if(tipo == 3){
+    		//Si no contiene '&' la localizacion no será correcta
+    		if(localizacion.contains("&")){
+    			try{
+    				String[] trozos = localizacion.split("&");
+    				double latitud = Double.parseDouble(trozos[0]);
+    				double longitud = Double.parseDouble(trozos[1]);
+    				return true;
+    			}catch (Exception e) {
+    				System.err.println("La localización no es correcta.");
+            	    ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "No se ha establecido la localización o esta es incorrecta, el sensor no se creará");
+        			return false;
+				}
+    		}else{
+    			System.err.println("La localización no es correcta.");
+        	    ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "No se ha establecido la localización o esta es incorrecta, el sensor no se creará");
+    			return false;
+    		}
+    	}else{
+    		return true;
+    	}
+	}
+
+	public ArrayList<List<XSSFCell>> getAllUsers() {
+    	return allUsers;
     }
 
 }
